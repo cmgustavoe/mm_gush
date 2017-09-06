@@ -1,0 +1,69 @@
+<%# ************************* Inicio del bloque resultados ************************* %>
+<div class="mm_results">
+  <% panel_accordion_count = 0 %>
+  <%#= @all_sports[@all_s][1] %>
+  <% @sport_tab = @all_sports[@all_s][1] %>
+  <% only_one = 0 %>
+  <%#= @score_g[@sport_tab] %>
+  <% for spg in 0..(@sport_g.length-1) %>
+    <% for cg in 0..(@countries_g.length-1) %>
+      <% for lg in 0..(@league_g.length-1) %>
+	    <% for sg in 0..(@season_g.length-1) %>
+	      <% for dg in 0..(@date_g.length-1) %>
+	        <% @temp_key = "#{@sport_g[spg][1]}|#{@countries_g[cg][1]}|#{@league_g[lg][1]}|#{@season_g[sg][1]}|#{@date_g[dg].strftime("%Y-%m-%d")}" %>
+	        <%#= @temp_key %>
+	        <%#= @score_g[@sport_tab] %>
+	 <% begin %>
+              <% if !@score_g[@sport_tab][0][@temp_key].nil? %>
+
+	            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	              <div class="panel panel-default">
+	                                
+	                <div class="panel-heading" role="tab" id="heading<%= @sport_g[spg][1] %><%= @date_g[dg].strftime("%d%m%Y") %>">
+                      <h4 class="panel-title">
+                        <% if @according == 0 %>
+	                      <p><%= @date_g[dg].strftime("%d-%m-%Y") %></p>
+	                    <% else %>
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= @sport_g[spg][1] %><%= @date_g[dg].strftime("%d%m%Y") %>" <% if panel_accordion_count == 0 %> aria-expanded="true" <% else %> aria-expanded="false" <% end %> aria-controls="collapse<%= @sport_g[spg][1] %><%= @date_g[dg].strftime("%d%m%Y") %>"><%= @date_g[dg].strftime("%d-%m-%Y") %></a>
+	                    <% end %>
+	                  </h4>
+	                </div>
+	                  
+	                <div id="collapse<%= @sport_g[spg][1] %><%= @date_g[dg].strftime("%d%m%Y") %>" <%if panel_accordion_count == 0 %> class="panel-collapse collapse in" <% else %> class="panel-collapse collapse" <% end %>  role="tabpanel" aria-labelledby="heading<%= @sport_g[spg][1] %><%= @date_g[dg].strftime("%d%m%Y") %>">
+	                  <div class="panel-body">
+                        <%# imagen - pais - liga - temporada %>
+	                    <h2><%= image_tag "#{@countries_g[cg][3]}#{@countries_g[cg][2]}" , :class => "", :border => "0", :alt => "#{@countries_g[cg][1]}" %><%= @countries_g[cg][1] %> : <%= @league_g[lg][1] %> : Temporada <%=  @season_g[sg][1] %></h2>
+	                    <% for @count_game in 0..( @score_g[@sport_tab][0][@temp_key].length-1) %>
+	                      <% if @column_count == 2 %>
+                            <div class="col-xs-6 col-sm-9">
+                              <%#= @score_g[@sport_tab][0][@temp_key][@count_game][4] %>
+	                      <%= render "shared/baseball/baseball_board" %><br>   
+                            </div>
+                          <% else %>
+                            <div class="col-xs-6 col-sm-6">
+                              <%#= @score_g[@sport_tab][0][@temp_key][@count_game][4] %>
+	                      <%= render "shared/next_game_board" %><br>   
+                            </div>
+                          <% end %>
+	                    <% end %>
+                      </div>
+                    </div>
+                  </div>
+             
+                  <% panel_accordion_count = 1 %>
+                </div>
+              <% end %>
+            <% rescue Exception => e  %>
+
+              <% if only_one == 0 %>
+                <br><br><p class="text-center">No hay resultados para esta fecha.</p><br>
+                <% only_one += 1 %>
+              <% end %>
+            <% end %>
+        
+	      <% end %> <%# fin de date %>  
+	    <% end %> <%# fin de season %>  
+	  <% end %> <%# fin de league %>  
+	<% end %> <%# fin de countries %>  
+  <% end %> <%# fin de sport %>   
+</div>

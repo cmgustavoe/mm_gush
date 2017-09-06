@@ -1,0 +1,103 @@
+<% @game_status = @score_g[@sport_tab][0][@temp_key][0][0] %>
+<% @game_hour = @score_g[@sport_tab][0][@temp_key][0][1] %>
+<%= @score_g[@sport_tab][0][@temp_key][@count_game][1] %>
+<%= @score_g[@sport_tab][0][@temp_key][@count_game][4][12][1] %>
+<% if @score_g[@sport_tab][0][@temp_key][@count_game][4].length ==0 %>
+  <%# @game_status = @score_g[@sport_tab][0][@temp_key][0][0] %>
+  <%# @game_hour = @score_g[@sport_tab][0][@temp_key][0][1] %>
+  <table class="mm_table_game">
+    <thead>
+      <tr class="mm_header_result">
+        <td class="mm_mane_team"><% if @game_status == "N" %><%= @game_hour.strftime("%H:%M") %><% end %></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>&nbsp;</td>
+        <td class="mm_cell_result">C</td>
+        <td class="mm_cell_result">H</td>
+        <td class="mm_cell_result">E</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="mm_body_result">
+        <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][2][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][2][4] %></strong></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result">&nbsp</td>
+        <td class="mm_cell_result"><strong> </strong></td>
+        <td class="mm_cell_result"><strong> </strong></td>
+        <td class="mm_cell_result"><strong> </strong></td>
+      </tr>
+      <tr class="mm_body_result">
+        <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][3][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][3][4] %></strong></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result"></td>
+        <td class="mm_cell_result">&nbsp</td>
+        <td class="mm_cell_result"><strong> </strong></td>
+        <td class="mm_cell_result"><strong> </strong></td>
+        <td class="mm_cell_result"><strong> </strong></td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <table class="mm_table_game">
+    <thead>
+      <tr class="mm_header_result">
+        <td class="mm_mane_team"><% if @game_status == "N" %><%= @game_hour.strftime("%H:%M") %><% end %></td>
+        <% for result in 3..((@score_g[@sport_tab][0][@temp_key][@count_game][4].length-1)/2) %>
+          <td><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][result][0] %></td>
+        <% end %>
+        <td>&nbsp;</td>
+        <td class="mm_cell_result">C</td>
+        <td class="mm_cell_result">H</td>
+        <td class="mm_cell_result">E</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% begin %>
+        <tr class="mm_body_result">
+          <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][2][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][2][4] %></strong></td>
+          <% for result in 3..((@score_g[@sport_tab][0][@temp_key][@count_game][4].length-1)/2) %>
+            <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][result][1] %></td>
+          <% end %>
+          <td class="mm_cell_result">&nbsp</td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][0][1] %></td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][1][1] %></td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][2][1] %></td>
+        </tr>
+        <tr class="mm_body_result">
+          <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][3][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][3][4] %></strong></td>
+          <% for result in 3..((@score_g[@sport_tab][0][@temp_key][@count_game][4].length-1)/2) %>
+            <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][result+12][1] %></td>
+          <% end %>
+          <td class="mm_cell_result">&nbsp</td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][12][1] %></td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][13][1] %></td>
+          <td  class="mm_cell_result"><%= @score_g[@sport_tab][0][@temp_key][@count_game][4][14][1] %></td>
+        </tr>
+      <% rescue Exception => e  %>
+        <p><%= e %><p>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,33 @@
+<% if !@sports.nil? %>          
+  <div class="list-group  hidden-xs">
+    <a href="#" class="mm_list-group-title mm_active">
+      <strong>Deportes</strong>
+    </a>
+    <% @sports.each do |sport| %>
+      <%= link_to sport.name, sport_path(sport.id), class:"mm_list-group-item" %>
+      <%#= link_to "#{sport.name}", sports_path(sport.id), :class=>"list-group-item" %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !@leagues.nil? %>          
+  <div class="list-group  hidden-xs">
+    <a href="#" class="mm_list-group-title mm_active">
+      <strong>Ligas</strong>
+    </a>
+    <% @leagues.each do |league| %>
+      <%= link_to league.name, league_path(league.id), :class=>"mm_list-group-item" %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !@countries.nil? %>          
+  <div class="list-group  hidden-xs">
+    <a href="#" class="mm_list-group-title mm_active">
+      <strong>Paises</strong>
+    </a>
+    <% @countries.each do |country| %>
+      <%= link_to country.name, country_path(country.id), :class=>"mm_list-group-item" %>
+    <% end %>
+  </div>
+<% end %>

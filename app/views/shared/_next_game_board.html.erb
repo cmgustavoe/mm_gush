@@ -1,0 +1,20 @@
+<% @game_status = @score_g[@sport_tab][0][@temp_key][@count_game][0] %>
+<% @game_hour = @score_g[@sport_tab][0][@temp_key][@count_game][1] %>
+<table class="mm_table_game">
+  <thead>
+    <tr class="mm_header_result">
+      <td class="mm_mane_team"><% if @game_status == "N" %><%= @game_hour.strftime("%H:%M") %><% end %></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr class="mm_body_result">
+      <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][2][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][2][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][2][4] %></strong></td>
+    </tr>
+
+    <tr class="mm_body_result">
+      <td class="mm_cell_result"><%= image_tag "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][2]}#{@score_g[@sport_tab][0][@temp_key][@count_game][3][1]}" , :class => "", :border => "0", :alt => "#{@score_g[@sport_tab][0][@temp_key][@count_game][3][0]}" %><strong><%= @score_g[@sport_tab][0][@temp_key][@count_game][3][4] %></strong></td>
+    </tr>
+
+  </tbody>
+</table>
